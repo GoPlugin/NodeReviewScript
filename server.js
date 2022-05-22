@@ -58,5 +58,6 @@ async function invoke(txHashList) {
 }
 
 // getTotalTxn("xdc9072328cce4B1F5e9CFb6d0D15b588B33DD4bE21");
-getTotalTxn("xdc049e5Fb7768db63700f2AEDEAc75E22d91054E80");
+// getTotalTxn("xdc049e5Fb7768db63700f2AEDEAc75E22d91054E80");
+getTotalTxn(process.argv[2]);
 
