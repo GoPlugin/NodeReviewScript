@@ -15,7 +15,7 @@ cd NodeReviewScript
 npm i
 node server.js
 ```
-Make sure to override your contract address in the line number 
+Make sure to pass your contract address like below, this will bring all the transaction for the respective contract and result the method invocation status
 
 ```
 node server.js xdc9072328cce4B1F5e9CFb6d0D15b588B33DD4bE21
