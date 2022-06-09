@@ -22,8 +22,10 @@ async function getTotalTxn(contractadress) {
 
 async function txReceipt(txHash) {
     var txReceiptValue = await xdc3.eth.getTransactionReceipt(txHash, async (error, txResult) => {
+        console.log("txResult",txResult)
         if (txResult.status) {
             const txValue = await xdc3.eth.getTransaction(`${txHash}`, async (error, txResult2) => {
+                console.log("txResult2",txResult2)
                 var result = await decoder.decodeData(txResult2.input);
                 if (result.method === "fulfillOracleRequest" || result.method === "setFulfillmentPermission") {
                     console.log('\n');
@@ -51,13 +53,23 @@ async function txReceipt(txHash) {
     });
 }
 
+async function txReceiptLogRead(txHash) {
+    var txReceiptValue = await xdc3.eth.getTransactionReceipt(txHash, async (error, txResult) => {
+        console.log("txResult",txResult.logs)
+    });
+}
+
 async function invoke(txHashList) {
     for (i = 0; i < txHashList.length; i++) {
         await txReceipt(txHashList[i])
     }
 }
 
-// getTotalTxn("xdc9072328cce4B1F5e9CFb6d0D15b588B33DD4bE21");
-// getTotalTxn("xdc049e5Fb7768db63700f2AEDEAc75E22d91054E80");
+if(process.argv[3]=="log"){
+    txReceiptLogRead(process.argv[2]);
+}else{
 getTotalTxn(process.argv[2]);
+}
+
+
 
